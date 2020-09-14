@@ -1,0 +1,107 @@
+<div class="card">
+  <div class="card-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-md-6">
+              <p-dropdown [options]="models" formControlName="Model" placeholder="Selecciona un modelo" optionLabel="name" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="col-md-6">
+              <span class="ui-float-label">
+                <input
+                  id="float-input"
+                  type="text"
+                  size="30"
+                  autocomplete="off"
+                  pInputText
+                  formControlName="LicencePlate"
+                />
+                <label for="float-input">Número de placa</label>
+              </span>
+              <p
+                class="form-control-feedback"
+                *ngIf="
+                  !form.controls['LicencePlate'].valid &&
+                  form.controls['LicencePlate'].dirty
+                "
+              >
+                El número de placa es requerido
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <br>
+              <span class="ui-float-label">
+                <input
+                  id="float-input"
+                  type="text"
+                  size="30"
+                  autocomplete="off"
+                  pInputText
+                  formControlName="IdVehicleOwner"
+                />
+                <label for="float-input">Número de identificación propietario</label>
+              </span>
+              <p
+                class="form-control-feedback"
+                *ngIf="
+                  !form.controls['IdVehicleOwner'].valid &&
+                  form.controls['IdVehicleOwner'].dirty
+                "
+              >
+                El Número de identificación propietario es requerido
+              </p>
+            </div>
+            <div class="col-md-6">
+              <br>
+              <span class="ui-float-label">
+                <input
+                  id="float-input"
+                  type="text"
+                  size="30"
+                  autocomplete="off"
+                  pInputText
+                  formControlName="Value"
+                />
+                <label for="float-input">Valor</label>
+              </span>
+              <p
+                class="form-control-feedback"
+                *ngIf="
+                  !form.controls['Value'].valid &&
+                  form.controls['Value'].dirty
+                "
+              >
+                El valor es requerido
+              </p>
+            </div>
+            <div class="col-md-6">
+              <br>
+              <p-fileUpload
+                #fileUpload
+                name="demo[]"
+                (uploadHandler)="myUploader($event)"
+                customUpload="true"
+                chooseLabel="Seleccionar imagen"
+                invalidFileTypeMessageSummary="Solo se permiten imagenes"
+                uploadLabel="Guardar"
+                cancelLabel="Cancelar"
+                accept="image/*"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length" class="fa fa-file-text-o">
+                    <li
+                      *ngFor="let file of uploadedFiles"
+                      class="fa fa-file-text-o"
+                    >
+                      {{ file.name }} - {{ file.size }} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+        </form>
+
+ 
+  </div>
+</div>
